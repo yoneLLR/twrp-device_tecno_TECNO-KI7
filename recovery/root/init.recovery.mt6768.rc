@@ -1,5 +1,5 @@
 import /init.custom.rc
-import /init.microtrust.rc
+import /init.tee.rc
 
 on init
     export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/vendor/lib64/hw
@@ -8,7 +8,9 @@ on post-fs
     # Support A/B feature for EMMC boot region
     symlink /dev/block/mmcblk0boot0 /dev/block/platform/bootdevice/by-name/preloader_a
     symlink /dev/block/mmcblk0boot1 /dev/block/platform/bootdevice/by-name/preloader_b
-    
+    symlink /dev/block/mmcblk0boot0 /dev/block/by-name/preloader_a
+    symlink /dev/block/mmcblk0boot1 /dev/block/by-name/preloader_b
+
     # Fix OF installer
     symlink /dev/block/platform/bootdevice /dev/block/bootdevice
 
